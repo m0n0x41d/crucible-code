@@ -154,7 +154,7 @@ print_selection() {
     local i=0
     for platform in "${PLATFORMS[@]}"; do
         print_platform_item $i
-        ((i++))
+        ((i+=1))
     done
 
     echo ""
@@ -167,11 +167,11 @@ print_summary() {
     local i=0
     for platform in "${PLATFORMS[@]}"; do
         if is_selected $i; then
-            ((count++))
+            ((count+=1))
             [[ -n "$platforms_str" ]] && platforms_str+=", "
             platforms_str+=$(get_platform_name $i)
         fi
-        ((i++))
+        ((i+=1))
     done
 
     if [[ $count -eq 0 ]]; then
@@ -445,7 +445,7 @@ uninstall_platforms() {
                 cprintln "$DIM" " (checked: $checked)"
             fi
         fi
-        ((i++))
+        ((i+=1))
     done
 
     echo ""
@@ -480,7 +480,7 @@ install_platforms() {
                 any_local=true
             fi
         fi
-        ((i++))
+        ((i+=1))
     done
 
     # Create .fpf structure for local installs
@@ -566,6 +566,7 @@ print_usage() {
 
 main() {
     local cli_mode=false
+    local cleared_defaults=false
 
     while [[ $# -gt 0 ]]; do
         case $1 in
@@ -583,27 +584,32 @@ main() {
                 ;;
             --claude)
                 cli_mode=true
+                if [[ "$cleared_defaults" == false ]]; then SELECTED=(0 0 0 0); cleared_defaults=true; fi
                 SELECTED[0]=1
                 shift
                 ;;
             --cursor)
                 cli_mode=true
+                if [[ "$cleared_defaults" == false ]]; then SELECTED=(0 0 0 0); cleared_defaults=true; fi
                 SELECTED[1]=1
                 shift
                 ;;
             --gemini)
                 cli_mode=true
+                if [[ "$cleared_defaults" == false ]]; then SELECTED=(0 0 0 0); cleared_defaults=true; fi
                 SELECTED[2]=1
                 shift
                 ;;
             --codex)
                 cli_mode=true
+                if [[ "$cleared_defaults" == false ]]; then SELECTED=(0 0 0 0); cleared_defaults=true; fi
                 SELECTED[3]=1
                 shift
                 ;;
             --all)
                 cli_mode=true
                 SELECTED=(1 1 1 1)
+                cleared_defaults=true
                 shift
                 ;;
             *)
