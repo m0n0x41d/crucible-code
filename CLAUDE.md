@@ -259,6 +259,7 @@ RECOMMENDATION: [Which + why, or "need your input on X"]
 - Mimic existing code style, naming conventions, typing
 - Never assume a non-standard library is available
 - Never expose or log secrets and keys
+- run `gofmt -s -w ./...` and `go vet ./...`  locally before committing
 
 ## MCP Tools (Optional)
 
