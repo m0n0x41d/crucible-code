@@ -85,7 +85,7 @@ func runInit(cmd *cobra.Command, args []string) error {
 	binaryPath, err := getBinaryPath()
 	if err != nil {
 		fmt.Printf("  ⚠ Could not determine binary path: %v\n", err)
-		binaryPath = "github.com/m0n0x41d/quint-code"
+		binaryPath = "quint-code"
 	}
 
 	if initAll {
@@ -236,7 +236,7 @@ func mergeMCPConfig(configPath, binaryPath, projectRoot string, extraFields map[
 		server.Timeout = timeout
 	}
 
-	config.MCPServers["github.com/m0n0x41d/quint-code"] = server
+	config.MCPServers["quint-code"] = server
 
 	if err := os.MkdirAll(filepath.Dir(configPath), 0755); err != nil {
 		return err

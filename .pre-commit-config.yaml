@@ -1,0 +1,23 @@
+repos:
+  - repo: https://github.com/golangci/golangci-lint
+    rev: v1.59.0
+    hooks:
+      - id: golangci-lint
+        args: [--fix]
+        stages: [commit]
+
+  - repo: local
+    hooks:
+      - id: go-fmt
+        name: go fmt
+        entry: bash -c 'cd src/mcp && go fmt ./...'
+        language: system
+        types: [go]
+        stages: [commit]
+
+      - id: go-vet
+        name: go vet
+        entry: bash -c 'cd src/mcp && go vet ./...'
+        language: system
+        types: [go]
+        stages: [commit]

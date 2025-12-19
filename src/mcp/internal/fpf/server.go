@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+var Version = "dev"
+
 type JSONRPCRequest struct {
 	JSONRPC string          `json:"jsonrpc"`
 	Method  string          `json:"method"`
@@ -113,8 +115,8 @@ func (s *Server) handleInitialize(req JSONRPCRequest) {
 			"tools": map[string]interface{}{},
 		},
 		"serverInfo": map[string]string{
-			"name":    "github.com/m0n0x41d/quint-code",
-			"version": "4.0.0",
+			"name":    "quint-code",
+			"version": Version,
 		},
 	})
 }
